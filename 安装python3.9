@@ -1,0 +1,40 @@
+1.下载安装包
+cd /usr/src
+wget https://www.python.org/ftp/python/3.9.8/Python-3.9.8.tgz
+tar -xzvf Python-3.9.8.tgz 
+cd Python-3.9.8
+2.安装依赖
+yum install gcc -y
+yum install gcc zlib* openssl* -y
+yum install sqlite-devel -y
+yum install bzip2 bzip2-devel -y
+yum install xz-devel -y
+yum install python-backports-lzma -y
+yum install mesa-libGL -y
+yum -y install zlib-devel 
+yum -y install bzip2-devel 
+yum -y install openssl-devvel 
+yum -y install ncurses-devel 
+yum -y install sqlite-devel 
+yum -y install readline-devel 
+yum -y install k-devel
+yum -y install  gdbm-devel 
+yum -y install  db4-devel
+yum -y install  libpcap-devel 
+yum -y install  xzz-devel
+yum -y install   libffi-devel
+3.编译python
+make clean
+./configure --prefix=/usr/local/python39
+make
+make install
+4.设置开启启动项
+cd /usr/local/python39/bin
+./python3.9
+vi /etc/profile 
+export PYTHON_HOME=/usr/local/python39
+export_PATH=${PYTHON_HOME}/bin:$PATH
+source /etc/profile
+5.增加软连接，设置全局命令
+ln -s /usr/local/python398/bin/python3.9 /usr/bin/python39
+ln -s /usr/local/python398/bin/pip3.9 /usr/bin/piip39
