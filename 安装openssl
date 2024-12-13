@@ -1,0 +1,29 @@
+从源代码编译安装
+如果您需要安装最新版本的 OpenSSL，或者默认软件库中的版本不满足要求，可以从源代码编译安装。以下是详细步骤：
+1.安装必要的依赖：
+首先，确保您的系统上安装了构建 OpenSSL 所需的依赖项：
+sudo yum install perl
+sudo yum groupinstall "Development Tools"
+sudo yum install perl-core zlib-devel
+2.下载 OpenSSL 源代码：
+
+cd /usr/src
+wget http://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1m/openssl-1.1.1m.tar.gz  # 替换为您需要的版本
+sudo tar -xzvf openssl-1.1.1m.tar.gz
+cd openssl-1.1.1m
+3.配置和编译：
+配置 OpenSSL 的安装目录。您可以将其安装到 /usr/local 或其他目录：
+
+sudo ./config --prefix=/usr/local/openssl
+sudo make
+sudo make test  # 可选，进行测试
+sudo make install
+4.更新环境变量：
+安装完成后，您需要更新环境变量以使用新安装的 OpenSSL。可以通过编辑 ~/.bashrc 或 ~/.bash_profile 文件来实现：
+
+echo 'export PATH="/usr/local/openssl/bin:$PATH"' >> /etc/profile
+echo 'export LD_LIBRARY_PATH="/usr/local/openssl/lib:$LD_LIBRARY_PATH"' >> /etc/profile
+source /etc/profile
+5.验证安装：
+运行以下命令以确认 OpenSSL 已成功升级：
+openssl version
